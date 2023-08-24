@@ -13,7 +13,7 @@ import java.util.Objects;
 
 @Service
 @Slf4j
-public class UserService {
+public class ChefService {
 
     private Flux<Pancake> pancakes = Flux.empty();
     public void bakePancake(User user) {
@@ -33,15 +33,10 @@ public class UserService {
         }
     }
 
-    public void eat(User user1, User user2, User user3) {
-        if (Objects.equals(user1.getRole(), "Customer")) {
-            pancakes.delayElements(Duration.ofSeconds(30))
-                    .subscribe((pancake)->{
-                        log.info(user1.getName() + " has started eating");
-                        log.info(pancake.getName() + " has been eaten");
-                    });
-
-            log.info(user1.getName() + " has finished eating");
-        }
+    public void servePancake(Flux<User> customers){
+        customers.subscribe((user)->{
+             user.eat(pancakes);
+        });
     }
+
 }

@@ -1,12 +1,12 @@
 package com.assessment.pancakeshop;
 
 import com.assessment.pancakeshop.model.User;
-import com.assessment.pancakeshop.service.UserService;
-import org.springframework.boot.ApplicationRunner;
+import com.assessment.pancakeshop.service.ChefService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 
 @SpringBootApplication
 public class PancakeShopApplication {
@@ -19,7 +19,7 @@ public class PancakeShopApplication {
 	public class ApplicationRunner implements CommandLineRunner{
 		@Override
 		public void run(String... args){
-			UserService userService = new UserService();
+			ChefService chefService = new ChefService();
 			User user1 = User.builder()
 					.name("user1")
 					.role("Customer")
@@ -40,8 +40,10 @@ public class PancakeShopApplication {
 					.role("Chef")
 					.build();
 
-			userService.bakePancake(chef);
-			userService.eat(user1, user2, user3);
+			chefService.bakePancake(chef);
+			Flux<User> users = Flux.just(user1,user2,user3);
+			chefService.servePancake(users);
+
 		}
 	}
 

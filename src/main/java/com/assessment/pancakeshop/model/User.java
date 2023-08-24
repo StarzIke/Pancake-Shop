@@ -9,6 +9,7 @@ import reactor.core.publisher.Flux;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -19,6 +20,16 @@ public class User {
     private String name;
     private String role;
 
+    public void eat(Flux<Pancake> pancakes) {
+        if (Objects.equals(role, "Customer")) {
+            pancakes.delayElements(Duration.ofSeconds(30))
+                    .subscribe((pancake)->{
+                        log.info(name + " has started eating");
+                        log.info(pancake.getName() + " has been eaten");
+                    });
 
+            log.info(name + " has finished eating");
+        }
+    }
 
 }
