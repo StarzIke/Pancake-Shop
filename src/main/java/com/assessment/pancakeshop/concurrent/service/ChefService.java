@@ -1,12 +1,11 @@
-package com.assessment.pancakeshop.service;
+package com.assessment.pancakeshop.concurrent.service;
 
-import com.assessment.pancakeshop.model.Pancake;
-import com.assessment.pancakeshop.model.User;
+import com.assessment.pancakeshop.concurrent.model.Pancake;
+import com.assessment.pancakeshop.concurrent.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +19,7 @@ public class ChefService {
         if (Objects.equals(user.getRole(), "Chef")) {
             List<Pancake> list = new ArrayList<>();
             log.info("Pancake Baking has Started");
-            for (int i = 1; i <= 3; i++) {
+            for (int i = 1; i <= 12; i++) {
                 Pancake pancake = Pancake.builder()
                         .name("Pancake " + i)
                         .price(500.00)

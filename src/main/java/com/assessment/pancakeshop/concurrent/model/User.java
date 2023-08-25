@@ -1,4 +1,4 @@
-package com.assessment.pancakeshop.model;
+package com.assessment.pancakeshop.concurrent.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 
 import java.time.Duration;
-import java.util.List;
 import java.util.Objects;
 
 @Data

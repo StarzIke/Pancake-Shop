@@ -1,4 +1,4 @@
-package com.assessment.pancakeshop.model;
+package com.assessment.pancakeshop.non_concurrent.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Pancake {
+public class PancakeN {
+
     private Integer quantity;
     private Double price;
     private String name;
